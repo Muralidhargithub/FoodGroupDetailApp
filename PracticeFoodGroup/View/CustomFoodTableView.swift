@@ -4,6 +4,7 @@ class CustomFoodTableViewController: UIViewController {
     // MARK: - Properties
     private let tableView = UITableView()
     private let viewModel = CustomFoodTableViewModel()
+    weak var coordinator: AppCoordinator?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -72,13 +73,9 @@ class CustomFoodTableViewController: UIViewController {
         }
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-            guard let selectGroup = viewModel.foodGroupAt(at: indexPath.row) else { return }
-            let detailVC = CustomFoodTableDetailViewController(foodItems: selectGroup.food_items, viewModel: viewModel)
-//
-            // Push the detail view controller onto the navigation stack
-            navigationController?.pushViewController(detailVC, animated: true)
-        }
+                guard let selectedGroup = viewModel.foodGroupAt(at: indexPath.row) else { return }
+                coordinator?.showDetailView(foodGroup: selectedGroup)
+            }
 
     }
 

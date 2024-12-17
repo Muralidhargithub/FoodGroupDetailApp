@@ -3,51 +3,7 @@ import UIKit
 
 
 
-//class CustomFoodTableViewModel {
-//    
-//    private let networkManager: NetworkManager
-//    private var isLoading: ((Bool) -> ())?
-//    var fetchedFood: (([FoodGroup]) -> ())?
-//    private var fetchedData: [FoodGroup] = []
-//    
-//    init(networkManager:NetworkManager = NetworkManagerImpl.shared) {
-//        self.networkManager = networkManager
-//        self.isLoading = nil
-//               self.fetchedFood = nil
-//    }
-//    
-//    func fetchFoodData(from url: String){
-//        isLoading?(true)
-//        
-//        Task{
-//            do{
-//                let storeData: FoodData = try await
-//                self.networkManager.getData(url: url)
-//                self.fetchedData = storeData.food_groups
-//                isLoading?(false)
-//                fetchedFood?(fetchedData)
-//            }
-//        }
-//    }
-//    
-//    func foodGroupCount() -> Int {
-//        return fetchedData.count
-//    }
-//    
-//    func foodGroupAt(at index:Int) -> FoodGroup? {
-//        guard index < fetchedData.count else{return nil}
-//        return fetchedData[index]
-//    }
-//    
-//    func fetchImageData(from url: String) async -> UIImage? {
-//        do{
-//            return try await networkManager.getImage(url: url)
-//        }catch{
-//            return nil
-//        }
-//    }
-//    
-//}
+
 
 class CustomFoodTableViewModel {
     private var fetchedData: [FoodGroup] = []
