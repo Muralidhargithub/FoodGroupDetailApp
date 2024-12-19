@@ -23,8 +23,8 @@ class AppCoordinator: Coordinator {
 
     func start() {
         let foodTableViewController = CustomFoodTableViewController()
-        foodTableViewController.coordinator = self // Pass the coordinator reference
-        navigationController.pushViewController(foodTableViewController, animated: false)
+        foodTableViewController.coordinator = self
+        navigationController.pushViewController(foodTableViewController, animated: true)
     }
 
     func showDetailView(foodGroup: FoodGroup) {

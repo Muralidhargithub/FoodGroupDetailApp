@@ -75,6 +75,11 @@ class CustomFoodTableViewController: UIViewController {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 guard let selectedGroup = viewModel.foodGroupAt(at: indexPath.row) else { return }
                 coordinator?.showDetailView(foodGroup: selectedGroup)
+            AnalyticsManager.shared.logItemSelected(
+                itemName: selectedGroup.name ?? "",
+                                Description: "\(selectedGroup.description)"
+                                
+                            )
             }
 
     }
