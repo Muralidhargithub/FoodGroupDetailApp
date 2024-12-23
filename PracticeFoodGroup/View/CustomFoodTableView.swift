@@ -1,11 +1,12 @@
 import UIKit
+import FirebaseCrashlytics
 
 class CustomFoodTableViewController: UIViewController {
     // MARK: - Properties
     private let tableView = UITableView()
     private let viewModel = CustomFoodTableViewModel()
     weak var coordinator: AppCoordinator?
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,8 +14,19 @@ class CustomFoodTableViewController: UIViewController {
         setupBindings()
         fetchFoodData()
         navigationItem.title = "FoodCuisine"
-    }
+        let button = UIButton(type: .roundedRect)
+               button.frame = CGRect(x: 50, y: 200, width: 100, height: 200)
+               button.setTitle("Test Crash", for: .normal)
+               button.addTarget(self, action: #selector(crashButtonTapped(_:)), for: .touchUpInside)
+               view.addSubview(button)
 
+    }
+    
+    @objc func crashButtonTapped(_ sender: UIButton) {
+        let numbers = [0]
+        let _ = numbers[1]
+    }
+    
     // MARK: - Setup UI
     private func setupUI() {
         view.backgroundColor = .white
@@ -36,21 +48,27 @@ class CustomFoodTableViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-
+    
     private func setupBindings() {
-            viewModel.fetchedFood = { [weak self] _ in
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
+        viewModel.fetchedFood = { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
             }
         }
-
-
-        // MARK: - Fetch Data
-        private func fetchFoodData() {
+    }
+    
+    
+    // MARK: - Fetch Data
+    private func fetchFoodData() {
+        do{
             viewModel.fetchData()
+            
+        }catch {
+            // Log non-fatal errors
+            Crashlytics.crashlytics().record(error: error)
         }
     }
+}
 
     // MARK: - UITableViewDataSource & UITableViewDelegate
     extension CustomFoodTableViewController: UITableViewDataSource, UITableViewDelegate {
@@ -77,9 +95,12 @@ class CustomFoodTableViewController: UIViewController {
                 coordinator?.showDetailView(foodGroup: selectedGroup)
             AnalyticsManager.shared.logItemSelected(
                 itemName: selectedGroup.name ?? "",
-                                Description: "\(selectedGroup.description)"
-                                
-                            )
+                                Description: "\(selectedGroup.description)")
+            //Crashlytics.crashlytics().log("Selected group: \(selectedGroup.name ?? "Unknown")")
+            if selectedGroup.name == "Pizza"{
+                fatalError("Pizza group selected and crashed")
+            }
+
             }
 
     }

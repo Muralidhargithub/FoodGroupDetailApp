@@ -10,6 +10,7 @@
 		37C630742D135E230043B0F9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 37C630732D135E230043B0F9 /* FirebaseAnalytics */; };
 		37C630762D135E230043B0F9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 37C630752D135E230043B0F9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		37C630782D135E230043B0F9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 37C630772D135E230043B0F9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		37D31E8D2D14EE4E0067683F /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 37D31E8C2D14EE4E0067683F /* FirebaseCrashlytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37C630742D135E230043B0F9 /* FirebaseAnalytics in Frameworks */,
+				37D31E8D2D14EE4E0067683F /* FirebaseCrashlytics in Frameworks */,
 				37C630782D135E230043B0F9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				37C630762D135E230043B0F9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 			);
@@ -124,6 +126,7 @@
 				379748FE2D0DF2B000A4C355 /* Sources */,
 				379748FF2D0DF2B000A4C355 /* Frameworks */,
 				379749002D0DF2B000A4C355 /* Resources */,
+				37D31E8E2D14F37C0067683F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -137,6 +140,7 @@
 				37C630732D135E230043B0F9 /* FirebaseAnalytics */,
 				37C630752D135E230043B0F9 /* FirebaseAnalyticsOnDeviceConversion */,
 				37C630772D135E230043B0F9 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				37D31E8C2D14EE4E0067683F /* FirebaseCrashlytics */,
 			);
 			productName = PracticeFoodGroup;
 			productReference = 379749022D0DF2B000A4C355 /* PracticeFoodGroup.app */;
@@ -211,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 379748FD2D0DF2B000A4C355 /* Build configuration list for PBXProject "PracticeFoodGroup" */;
+			buildConfigurationList = 379748FD2D0DF2B000A4C355 /* Build configuration list for PBXProject "" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -258,6 +262,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37D31E8E2D14F37C0067683F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		379748FE2D0DF2B000A4C355 /* Sources */ = {
@@ -385,7 +414,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_VERSION = "compiler-default";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -449,6 +479,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_VERSION = "compiler-default";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -541,7 +572,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		379748FD2D0DF2B000A4C355 /* Build configuration list for PBXProject "PracticeFoodGroup" */ = {
+		379748FD2D0DF2B000A4C355 /* Build configuration list for PBXProject "" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3797492E2D0DF2B300A4C355 /* Debug */,
@@ -605,6 +636,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37C630722D135E230043B0F9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		37D31E8C2D14EE4E0067683F /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37C630722D135E230043B0F9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
